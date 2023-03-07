@@ -1,10 +1,7 @@
 import { Router, } from 'express';
-import { readdirSync } from 'fs'
-import * as testRouter from './test'
+import { readdirSync } from 'fs';
 
 const router: Router = Router();
-
-router.use('/test', testRouter.router)
 
 const ROUTER_PATH: string = __dirname;
 

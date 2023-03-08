@@ -1,10 +1,17 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import { createItem, deleteItem, getItem, getItems, updateItem } from "../controllers/test.controller";
 
 const router: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  res.send('Hi from test')
-})
+router.post('/', createItem)
+
+router.get('/', getItems)
+
+router.get('/:itemId', getItem)
+
+router.patch('/:itemId', updateItem)
+
+router.delete('/:itemId', deleteItem)
 
 export {
   router

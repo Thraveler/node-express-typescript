@@ -1,18 +1,20 @@
 import { Request, Response } from 'express';
 import { errorHandler } from "../utils/error.handler";
+import * as CarService from "../services/car.service";
 
-const createItem = (req: Request, res: Response) => {
+const createItem = async (req: Request, res: Response) => {
   try {
-    res.send(req.body);
+    const carCreated = await CarService.insertCar(req.body);
+    res.send(carCreated);
   } catch (error) {
     errorHandler(res, 'CREATE_ITEM_ERROR');
   }
 }
 
-const getItems = (req: Request, res: Response) => {
+const getItems = async (req: Request, res: Response) => {
   try {
-
-    res.send('Hello');
+    const cars = await CarService.fetchCars();
+    res.json(cars);
   } catch (error) {
     errorHandler(res, 'GET_ITEMS_ERROR');
   }

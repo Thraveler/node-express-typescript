@@ -13,6 +13,9 @@ const CarSchema = new Schema<CarInterface>({
   },
   isHybrid: {
     type: Boolean
+  },
+  year: {
+    type: Number
   }
 }, {
   timestamps: true,

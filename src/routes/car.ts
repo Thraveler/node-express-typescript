@@ -7,11 +7,11 @@ router.post('/', createItem)
 
 router.get('/', getItems)
 
-router.get('/:itemId', getItem)
+router.get('/:carId', getItem)
 
-router.patch('/:itemId', updateItem)
+router.patch('/:carId', updateItem)
 
-router.delete('/:itemId', deleteItem)
+router.delete('/:carId', deleteItem)
 
 export {
   router

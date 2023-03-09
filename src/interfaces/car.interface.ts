@@ -3,6 +3,7 @@ interface CarInterface {
   model: string;
   price: number;
   isHybrid: boolean;
+  year: number;
 }
 
 export { CarInterface };

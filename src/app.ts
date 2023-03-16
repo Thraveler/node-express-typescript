@@ -2,12 +2,13 @@ import express, { Express, Request, Response } from 'express';
 import 'dotenv/config';
 import { router } from './routes'
 import { mongoConnection } from './config/mongo'
+import { logMiddleware } from './middleware/log';
 
 const app: Express = express();
 const port = process.env.PORT || 8000;
 
 app.use(express.json())
-app.use('/', router);
+app.use('/', logMiddleware, router);
 
 mongoConnection().then((data) => {
   console.log(`⚡️[server]: Server is connected to db`);

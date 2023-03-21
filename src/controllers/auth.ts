@@ -5,11 +5,12 @@ import * as AuthService from "../services/auth.service";
 
 const login = async (req: Request, res: Response) => {
   try {
-    const isLogged = await AuthService.loginUser(req.body);
+    const token = await AuthService.loginUser(req.body);
 
-    if (isLogged) {
+    if (token) {
       res.status(200).json({
-        message: "User logged successfully!"
+        message: "User logged successfully!",
+        token
       });
     } else {
       res.status(403).json({

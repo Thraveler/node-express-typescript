@@ -2,6 +2,7 @@ import { AuthInterface } from "../interfaces/auth.interface";
 import { UserInterface } from "../interfaces/user.interface";
 import { UserModel } from "../models/user.model";
 import { decrypt, encrypt } from "../utils/bcrypt.handler";
+import { generateToken } from "../utils/jwt.handler";
 
 const registerNewUser = async (user: UserInterface) => {
   const exist = await UserModel.find({ email: user.email });
@@ -31,7 +32,13 @@ const loginUser = async (auth: AuthInterface) => {
 
   isLogged = await decrypt(auth.password, userFounded.password);
 
-  return isLogged;
+  if (!isLogged) {
+    return false;
+  }
+
+  const jwt = generateToken(userFounded.id)
+
+  return jwt;
 }
 
 export {

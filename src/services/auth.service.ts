@@ -23,11 +23,13 @@ const loginUser = async (auth: AuthInterface) => {
   let isLogged: boolean;
   const userFounded = await UserModel.findOne({ email: auth.email });
 
-  if (userFounded) {
-    isLogged = await decrypt(auth.password, userFounded.password);
-  } else {
+  if (!userFounded) {
+    console.error(`⚡️[server]: User not found!`);
+
     return false;
   }
+
+  isLogged = await decrypt(auth.password, userFounded.password);
 
   return isLogged;
 }

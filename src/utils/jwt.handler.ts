@@ -10,8 +10,10 @@ const generateToken = async (userId: string) => {
   return jwtGenerated
 }
 
-const vefiryToken = () => {
+const vefiryToken = (token: string) => {
+  const validToken = verify(token, JWT_SECRET);
 
+  return validToken;
 }
 
 export {
